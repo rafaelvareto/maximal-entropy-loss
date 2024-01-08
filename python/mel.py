@@ -64,9 +64,9 @@ class MaximalEntropyLoss(torch.nn.Module):
 
 
 if __name__ == '__main__':
-    num_classes, num_samples = 10, 100
+    num_classes, num_samples = 11, 100
     values = torch.randn(num_samples, num_classes, requires_grad=True)
-    labels = torch.randint(num_classes, (num_samples,), dtype=torch.int64)
+    labels = torch.randint(num_classes, (num_samples,), dtype=torch.int64) - 1
     print(values.shape, labels.shape)
 
     criterion = MaximalEntropyLoss(num_classes=num_classes, reduction='sum')
