@@ -22,19 +22,20 @@ class MaximalEntropyLoss(torch.nn.Module):
     '''
     def __init__(self, num_classes:int, margin:float=0.35, reduction:str='mean'):
         super(MaximalEntropyLoss, self).__init__()
+        self.device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
 
         self.margin = margin
         self.num_classes = num_classes
         self.reduction = reduction
 
-        self.eye = torch.eye(self.num_classes)
-        self.ones = torch.ones(self.num_classes)
+        self.eye = torch.eye(self.num_classes, device=self.device)
+        self.ones = torch.ones(self.num_classes, device=self.device)
         self.unknowns_multiplier = 1.0 / self.num_classes
 
     def forward(self, logits:torch.Tensor, targets:torch.Tensor, sample_weights:torch.Tensor=None):
         # initialize variables with zeros
-        categorical_targets = torch.zeros(logits.shape)
-        margin_logits = torch.zeros(logits.shape)
+        categorical_targets = torch.zeros(logits.shape, device=self.device)
+        margin_logits = torch.zeros(logits.shape, device=self.device)
         # get boolean tensor (true/false) indicating elements satisfying criteria
         neg_indexes = (targets  < 0)
         pos_indexes = (targets >= 0)
@@ -51,7 +52,7 @@ class MaximalEntropyLoss(torch.nn.Module):
         # obtain negative log softmax in range [0, +inf)
         negative_log_values = (-1) * torch.nn.functional.log_softmax(margin_logits, dim=1)
         # obtain ground-truth loss for knowns and distributed loss for unknown classes (element wise)
-        loss = negative_log_values.cpu() * categorical_targets
+        loss = negative_log_values * categorical_targets
         # get loss for each sample in batch
         loss = torch.sum(loss, dim=1)
         # compute weighted loss
