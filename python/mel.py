@@ -20,9 +20,10 @@ class MaximalEntropyLoss(torch.nn.Module):
     The `targets` that this criterion expects should contain class indices in the range :math:`[0, C)` where :math:`C` is the number of classes
 
     '''
-    def __init__(self, num_classes:int, margin:float=0.35, reduction:str='mean'):
+    def __init__(self, num_classes:int, margin:float=0.35, reduction:str='mean', device:str=None):
         super(MaximalEntropyLoss, self).__init__()
-        self.device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
+        if device is not None: self.device = device
+        else: self.device = 'cuda:0' if torch.cuda.is_available() else 'cpu' 
 
         self.margin = margin
         self.num_classes = num_classes
