@@ -28,3 +28,7 @@ authors = [
 [project.urls]
 Homepage = "https://github.com/rafaelvareto/maximal-entropy-loss"
 Issues = "https://github.com/rafaelvareto/maximal-entropy-loss/issues"
+
+[tool.setuptools]
+    zip-safe = false
+    package-dir = {"" = "src"}
