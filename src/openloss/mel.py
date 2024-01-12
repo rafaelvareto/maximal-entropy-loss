@@ -67,7 +67,9 @@ class MaximalEntropyLoss(torch.nn.Module):
 
 
 if __name__ == '__main__':
+    torch.manual_seed(0)
     device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
+    
     num_classes, num_samples = 11, 100
 
     values = torch.randn(num_samples, num_classes, requires_grad=True).to(device)
