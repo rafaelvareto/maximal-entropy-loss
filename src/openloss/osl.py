@@ -27,7 +27,7 @@ class ObjectoSphereLoss(torch.nn.Module):
 
     def forward(self, features:torch.Tensor, targets:torch.Tensor, sample_weights:torch.Tensor=None):
         # guarantee all tensors run on same device
-        assert logits.device == targets.device, 'indices should be either on cpu or on the same device as the indexed tensor (cpu)'
+        assert features.device == targets.device, 'indices should be either on cpu or on the same device as the indexed tensor (cpu)'
         # get boolean tensor (true/false) indicating elements satisfying criteria
         neg_indexes = (targets  < 0)
         pos_indexes = (targets >= 0)
