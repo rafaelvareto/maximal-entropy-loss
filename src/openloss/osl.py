@@ -53,7 +53,9 @@ class ObjectoSphereLoss(torch.nn.Module):
 
 
 if __name__ == '__main__':
+    torch.manual_seed(0)
     device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
+    
     feat_size, num_classes, num_samples = 128, 11, 100
 
     features = torch.randn(num_samples, feat_size, requires_grad=True).to(device)
