@@ -58,9 +58,9 @@ if __name__ == '__main__':
 
     features = torch.randn(num_samples, feat_size, requires_grad=True).to(device)
     labels = torch.randint(num_classes, (num_samples,), dtype=torch.int64).to(device) - 1
-    print(device, features.shape, labels.shape)
+    print('OSL', device, features.shape, labels.shape)
 
     criterion = ObjectoSphereLoss(min_magnitude=5.0, reduction='sum')
     loss_score = criterion(features, labels)
     loss_score.backward()
-    print(loss_score)
+    print('OSL', loss_score)

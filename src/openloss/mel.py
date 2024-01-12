@@ -72,9 +72,9 @@ if __name__ == '__main__':
 
     values = torch.randn(num_samples, num_classes, requires_grad=True).to(device)
     labels = torch.randint(num_classes, (num_samples,), dtype=torch.int64).to(device) - 1
-    print(device, values.shape, labels.shape)
+    print('MEL', device, values.shape, labels.shape)
 
     criterion = MaximalEntropyLoss(num_classes=num_classes, reduction='sum')
     loss_score = criterion(values, labels)
     loss_score.backward()
-    print(loss_score)
+    print('MEL', loss_score)
