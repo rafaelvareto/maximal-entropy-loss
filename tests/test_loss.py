@@ -1,6 +1,9 @@
+import sys
 import torch
 
-from maximal_entropy_loss.src.openloss import EntropicOpenSetLoss, MaximalEntropyLoss, ObjectoSphereLoss
+sys.path.append('maximal-entropy-loss')
+
+from src.openloss import EntropicOpenSetLoss, MaximalEntropyLoss, ObjectoSphereLoss
 
 torch.manual_seed(0)
 device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
