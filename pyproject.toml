@@ -16,10 +16,9 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 dependencies = [
-    "bob.measure",
     "torch",
+    "torchaudio",
     "torchvision",
-    "matplotlib"
 ]
 
 authors = [
