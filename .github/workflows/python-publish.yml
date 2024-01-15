@@ -10,9 +10,9 @@ on:
   release:
     types: [published]
   push:
-    branches: [ "publish" ]
+    branches: [ "develop" ]
   pull_request:
-    branches: [ "publish" ]
+    branches: [ "develop" ]
 
 permissions:
   contents: read
