@@ -7,7 +7,7 @@ ObjectoSphere Loss
 
 import torch
 
-__all__ = [ 'ObjectoSphereLoss']
+__all__ = ['ObjectoSphereLoss']
 
 
 class ObjectoSphereLoss(torch.nn.Module):
@@ -66,3 +66,4 @@ if __name__ == '__main__':
     loss_score = criterion(features, labels)
     loss_score.backward()
     print('OSL', loss_score)
+    

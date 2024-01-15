@@ -7,7 +7,7 @@ Entropic Open-set Loss
 
 import torch
 
-__all__ = [ 'EntropicOpenSetLoss']
+__all__ = ['EntropicOpenSetLoss']
 
 
 class EntropicOpenSetLoss(torch.nn.Module):

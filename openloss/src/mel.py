@@ -7,7 +7,7 @@ Maximal Entropy Loss
 
 import torch
 
-__all__ = [ 'MaximalEntropyLoss']
+__all__ = ['MaximalEntropyLoss']
 
 
 class MaximalEntropyLoss(torch.nn.Module):

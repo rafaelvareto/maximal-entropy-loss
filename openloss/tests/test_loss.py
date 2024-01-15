@@ -1,12 +1,9 @@
-import sys
 import torch
 
-sys.path.append('maximal-entropy-loss')
 torch.manual_seed(0)
 device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
 
-from src.openloss import EntropicOpenSetLoss, MaximalEntropyLoss, ObjectoSphereLoss
-
+import openloss
 
 def test_eos():
     num_classes, num_samples = 11, 100
@@ -14,7 +11,7 @@ def test_eos():
     values = torch.randn(num_samples, num_classes, requires_grad=True).to(device)
     labels = torch.randint(num_classes, (num_samples,), dtype=torch.int64).to(device) - 1
 
-    criterion = EntropicOpenSetLoss(num_classes=num_classes, reduction='sum')
+    criterion = openloss.EntropicOpenSetLoss(num_classes=num_classes, reduction='sum')
     loss_score = criterion(values, labels)
     loss_score.backward()
 
@@ -27,7 +24,7 @@ def test_mel():
     values = torch.randn(num_samples, num_classes, requires_grad=True).to(device)
     labels = torch.randint(num_classes, (num_samples,), dtype=torch.int64).to(device) - 1
 
-    criterion = MaximalEntropyLoss(num_classes=num_classes, reduction='sum')
+    criterion = openloss.MaximalEntropyLoss(num_classes=num_classes, reduction='sum')
     loss_score = criterion(values, labels)
     loss_score.backward()
 
@@ -40,7 +37,7 @@ def test_osl():
     features = torch.randn(num_samples, feat_size, requires_grad=True).to(device)
     labels = torch.randint(num_classes, (num_samples,), dtype=torch.int64).to(device) - 1
 
-    criterion = ObjectoSphereLoss(min_magnitude=5.0, reduction='sum')
+    criterion = openloss.ObjectoSphereLoss(min_magnitude=5.0, reduction='sum')
     loss_score = criterion(features, labels)
     loss_score.backward()
 
