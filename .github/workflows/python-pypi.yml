@@ -4,15 +4,15 @@
 # This workflow uses actions that are not certified by GitHub.
 # They are provided by a third-party and are governed by separate terms of service, privacy policy, and support documentation.
 
-name: python-test-pypi
+name: python-pypi
 
 on:
   release:
     types: [published]
   push:
-    branches: [ "develop" ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ "develop" ]
+    branches: [ "master" ]
 
 permissions:
   contents: read
@@ -58,7 +58,7 @@ jobs:
     needs:
       - build
     environment:
-      name: test-pypi
+      name: pypi
     permissions:
       id-token: write
 
@@ -71,5 +71,4 @@ jobs:
     - name: Publish package to Test PyPI
       uses: pypa/gh-action-pypi-publish@release/v1
       with:
-        repository-url: https://test.pypi.org/legacy/
         print-hash: true
