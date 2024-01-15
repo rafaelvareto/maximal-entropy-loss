@@ -56,6 +56,11 @@ jobs:
       id-token: write
 
     steps:
+    - name: Including distribution files
+      uses: actions/download-artifact@v3
+      with:
+        name: dist
+        path: dist/
     - name: Publish package to Test PyPI
       uses: pypa/gh-action-pypi-publish@release/v1
       with:
