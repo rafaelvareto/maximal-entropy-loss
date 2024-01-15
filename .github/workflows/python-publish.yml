@@ -10,9 +10,9 @@ on:
   release:
     types: [published]
   push:
-    branches: [ "master" ]
+    branches: [ "publish" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "publish" ]
 
 permissions:
   contents: read
@@ -21,6 +21,11 @@ jobs:
   deploy:
 
     runs-on: ubuntu-latest
+    environment:
+      name: testpypi
+      url: https://test.pypi.org/project/open.loss
+    permissions:
+      id-token: write
     strategy:
       fail-fast: false
       matrix:
@@ -41,10 +46,10 @@ jobs:
     - name: Build and Test package
       run: |
         python -m build
+        pip install .
         pytest
     # Upddate PyPi access
-    # - name: Publish package
-    #   uses: pypa/gh-action-pypi-publish@27b31702a0e7fc50959f5ad993c78deac1bdfc29
-    #   with:
-    #     user: __token__
-    #     password: ${{ secrets.PYPI_API_TOKEN }}
+    - name: Publish package to TestPyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        repository-url: https://test.pypi.org/legacy/

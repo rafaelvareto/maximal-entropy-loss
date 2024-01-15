@@ -1,7 +1,3 @@
-from setuptools import setup
-
-setup()
-
 from setuptools import find_packages, setup
 
 with open("README.md", "r") as f:
@@ -11,7 +7,7 @@ setup(
     name="openloss",
     version="0.0.1",
     description="Cost functions designed for open-set classification tasks, published in well-known peer-reviewed venues.",
-    packages=find_packages(where=""),
+    packages=find_packages(where="openloss"),
     package_dir={"" : "openloss"},
     long_description=long_description,
     long_description_content_type="text/markdown",
