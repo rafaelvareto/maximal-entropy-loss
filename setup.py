@@ -4,7 +4,7 @@ with open("README.md", "r") as f:
     long_description = f.read()
 
 setup(
-    name="openloss",
+    name="open.loss",
     version="0.0.1",
     description="Cost functions designed for open-set classification tasks, published in well-known peer-reviewed venues.",
     packages=find_packages(where="openloss"),
@@ -15,8 +15,7 @@ setup(
     author="Rafael Vareto",
     author_email="rafael@vareto.com.br",
     classifiers=[
-        "Framework :: PyTorch",
-        "License :: OSI Approved :: GNU General Public License v3 (GPLv3)"
+        "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
         "Operating System :: OS Independent",
         "Programming Language :: Python :: 3",
     ],
