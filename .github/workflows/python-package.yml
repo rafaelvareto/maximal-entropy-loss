@@ -30,9 +30,9 @@ jobs:
         python -m pip install torch
     - name: Execute each loss function separately
       run: |
-        python openloss/src/eos.py
-        python openloss/src/mel.py
-        python openloss/src/osl.py
+        python python/openloss/src/eos.py
+        python python/openloss/src/mel.py
+        python python/openloss/src/osl.py
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
