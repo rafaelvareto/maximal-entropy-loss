@@ -10,9 +10,9 @@ on:
   release:
     types: [published]
   push:
-    branches: [ "develop" ]
+    branches: [ "feature/publish" ]
   pull_request:
-    branches: [ "develop" ]
+    branches: [ "feature/publish" ]
 
 permissions:
   contents: read
@@ -43,6 +43,12 @@ jobs:
         python -m build
         pip install .
         pytest
+    - name: Keep record of distribution files
+      uses: actions/upload-artifact@v3
+      with:
+        name: dist
+        path: dist/
+        if-no-files-found: error
 
 
   deploy:
@@ -56,7 +62,7 @@ jobs:
       id-token: write
 
     steps:
-    - name: Including distribution files
+    - name: Include distribution files
       uses: actions/download-artifact@v3
       with:
         name: dist
