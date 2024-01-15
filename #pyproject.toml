@@ -3,7 +3,7 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "open.loss"
+name = "openloss"
 version = "0.0.1"
 description = "Cost functions designed for open-set classification tasks, published in well-known peer-reviewed venues."
 keywords = ["openloss", "open set", "open-set learning", "cost function"]
