@@ -7,7 +7,7 @@ ObjectoSphere Loss
 
 import torch
 
-__all__ = [ 'ObjectoSphereLoss']
+__all__ = ['ObjectoSphereLoss']
 
 
 class ObjectoSphereLoss(torch.nn.Module):
@@ -27,7 +27,7 @@ class ObjectoSphereLoss(torch.nn.Module):
 
     def forward(self, features:torch.Tensor, targets:torch.Tensor, sample_weights:torch.Tensor=None):
         # guarantee all tensors run on same device
-        assert logits.device == targets.device, 'indices should be either on cpu or on the same device as the indexed tensor (cpu)'
+        assert features.device == targets.device, 'indices should be either on cpu or on the same device as the indexed tensor (cpu)'
         # get boolean tensor (true/false) indicating elements satisfying criteria
         neg_indexes = (targets  < 0)
         pos_indexes = (targets >= 0)
@@ -53,14 +53,17 @@ class ObjectoSphereLoss(torch.nn.Module):
 
 
 if __name__ == '__main__':
+    torch.manual_seed(0)
     device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
+    
     feat_size, num_classes, num_samples = 128, 11, 100
 
     features = torch.randn(num_samples, feat_size, requires_grad=True).to(device)
     labels = torch.randint(num_classes, (num_samples,), dtype=torch.int64).to(device) - 1
-    print(device, features.shape, labels.shape)
+    print('OSL', device, features.shape, labels.shape)
 
     criterion = ObjectoSphereLoss(min_magnitude=5.0, reduction='sum')
     loss_score = criterion(features, labels)
     loss_score.backward()
-    print(loss_score)
+    print('OSL', loss_score)
+    
