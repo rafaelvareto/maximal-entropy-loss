@@ -1,10 +1,10 @@
-# Open-set Learning Cost Functions
+# OPENLOSS: Open-set Learning Cost Functions
 
-This project encompasses a list of three cost functions recently designed for open-set learning and classification, available through the [Python Package Index](https://pypi.org/project/openloss/) so that it can be easily deployed to your environment:
+This project encompasses a list of three cost functions recently designed for open-set learning and classification, available through the **Openloss Package** [[PyPi link](https://pypi.org/project/openloss/)] so that it can be easily installed in your environment:
 
-* ```EntropicOpenSetLoss(num_classes, reduction='mean', weight=None)``` *[1,3]*
-* ```MaximalEntropyLoss(num_classes, margin=0.5, reduction='mean', weight=None)``` *[1,2]*
-* ```ObjectoSphereLoss(min_magnitude=10.0, reduction='mean')``` *[1,3]*
+* ```openloss.EntropicOpenSetLoss(num_classes, reduction='mean', weight=None)``` *[1,3]*
+* ```openloss.MaximalEntropyLoss(num_classes, margin=0.5, reduction='mean', weight=None)``` *[1,2]*
+* ```openloss.ObjectoSphereLoss(min_magnitude=10.0, reduction='mean')``` *[1,3]*
 
 Our most recent contribution, the Maximal Entropy Loss (MEL), increases the entropy for negative samples and attaches a penalty to known target classes in pursuance of gallery specialization.
 MEL was initially designed to address open-set face recognition applications; however, it can also be employed in any classification task.
