@@ -5,7 +5,7 @@ with open("README.md", "r") as f:
 
 setup(
     name="openloss",
-    version="0.0.1",
+    version="0.0.1.1",
     description="Cost functions designed for open-set classification tasks, namely, Entropic Open-set, ObjectoSphere and Maximal-Entropy Loss.",
     packages=find_packages(where="python"),
     package_dir={"" : "python"},
